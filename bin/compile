@@ -88,7 +88,7 @@ mkdir -p ${DNVM_RUNTIME_CACHE_LOCATION}
 ln -s ${DNVM_RUNTIME_CACHE_LOCATION} ${DNVM_RUNTIME_LOCAL_CACHE}/runtimes
 
 # TODO: extract DNX version from global.json
-dnvm install $DNX_VERSION $DNVM_FLAGS -a default
+dnvm install $DNX_VERSION $DNVM_FLAGS -arch x64 -a default
 
 # Add DNX to the build output
 DNX_BUILD_LOCATION=${BUILD_DIR}/.dnx/runtimes/
@@ -113,7 +113,7 @@ export DNU_LOCAL_CACHE="/app/.local/share/dnu"
 export DNU_CACHE_LOCATION="${CACHE_DIR}/dnu/cache"
 mkdir -p ${DNU_LOCAL_CACHE}
 mkdir -p ${DNU_CACHE_LOCATION}
-ln -s ${DNU_CACHE_LOCATION} ${DNU_LOCAL_CACHE}/cache 
+ln -s ${DNU_CACHE_LOCATION} ${DNU_LOCAL_CACHE}/cache
 
 dnu restore $DNU_FLAGS ${PROJECT_JSON_FILE}
 
@@ -134,7 +134,7 @@ else
 	if [ $( echo "${ROOTS}" | wc -l ) -gt 0 ]; then
 	APP_ROOT=$(echo "$ROOTS" | head -1)
 	cat << EOT >> ${BUILD_DIR}/Procfile
-web: ./kestrel --server.urls http://+:\$PORT
+web: approot/web --server.urls http://+:\$PORT
 EOT
 	fi
 fi
