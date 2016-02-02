@@ -39,7 +39,7 @@ fi
 if [ -n "$UNSTABLE_TOOLCHAIN" ]; then
 	DNVM_FLAGS="-u"
 else
-	DNVM_FLAGS=""
+	DNVM_FLAGS="-u"
 fi
 
 SRC_DIR=`mktemp -d`
